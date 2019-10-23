@@ -4,7 +4,7 @@
 Modified from code posted here: http://forums.pimoroni.com/t/pan-tilt-hat-repo/3402/11
 """
 import numpy as np
-import cv2.cv as cv
+import cv2 as cv
 import os
 from pantilthat import *
 
