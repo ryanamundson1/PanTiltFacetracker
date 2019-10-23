@@ -26,8 +26,8 @@ faceCascade = cv2.CascadeClassifier(cascPath)
 
 # Set up the capture with our frame size
 video_capture = cv2.VideoCapture(0)
-video_capture.set(cv2.cv.CV_CAP_PROP_FRAME_WIDTH,  FRAME_W)
-video_capture.set(cv2.cv.CV_CAP_PROP_FRAME_HEIGHT, FRAME_H)
+video_capture.set(cv2.CAP_PROP_FRAME_WIDTH,  FRAME_W)
+video_capture.set(cv2.CAP_PROP_FRAME_WIDTH, FRAME_H)
 time.sleep(2)
 
 # Turn the camera to the default position
