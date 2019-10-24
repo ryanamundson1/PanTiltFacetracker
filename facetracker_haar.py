@@ -10,7 +10,7 @@ from pantilthat import *
 
 os.system('sudo modprobe bcm2835-v4l2')
 
-cascade = cv.Load('/usr/share/opencv/haarcascades/haarcascade_frontalface_default.xml')
+cascade = cv.CascadeClassifier('/usr/share/opencv/haarcascades/haarcascade_frontalface_default.xml')
 #cascade = cv.Load('/usr/share/opencv/lbpcascades/lbpcascade_frontalface.xml')
 
 cam_pan = 90
