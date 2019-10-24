@@ -20,8 +20,8 @@ cam_pan = 90
 cam_tilt = 60
 
 # Set up the CascadeClassifier for face tracking
-#cascPath = 'haarcascade_frontalface_default.xml' # sys.argv[1]
-cascPath = '/usr/share/opencv/lbpcascades/lbpcascade_frontalface.xml'
+cascPath = 'haarcascade_frontalface_default.xml' # sys.argv[1]
+#cascPath = '/usr/share/opencv/lbpcascades/lbpcascade_frontalface.xml'
 faceCascade = cv2.CascadeClassifier(cascPath)
 
 # Set up the capture with our frame size
