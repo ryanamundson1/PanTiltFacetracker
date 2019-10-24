@@ -34,7 +34,7 @@ haar_scale = 1.2
 min_neighbors = 2
 haar_flags = cv.CASCADE_DO_CANNY_PRUNING
 
-cap = cv.CaptureFromCAM(0)
+cap = cv.VideoCapture(0)
 cv.NamedWindow("Tracker", 1)
  
 if cap:
@@ -42,9 +42,10 @@ if cap:
     
 while(True):
     # Capture frame-by-frame
-    frame = cv.QueryFrame(cap)
+    result, frame = capture.read()
+    #frame = cv.QueryFrame(cap)
     if not frame:
-        cv.WaitKey(0)
+        cv.waitKey(0)
         break
     if not frame_copy:
         frame_copy = cv.CreateImage((frame.width,frame.height),
@@ -110,7 +111,7 @@ while(True):
                 
     # Display the resulting frame
     cv.ShowImage('Tracker',frame)
-    if cv.WaitKey(1) & 0xFF == ord('q'):
+    if cv.waitKey(1) & 0xFF == ord('q'):
         break
 
 # When everything done, release the capture
