@@ -92,8 +92,12 @@ while True:
         # Scale offset to degrees
         turn_x   *= 2.5 # VFOV
         turn_y   *= 2.5 # HFOV
-        cam_pan  += -turn_x
-        cam_tilt += turn_y
+        #cam_pan  += -turn_x
+        #cam_tilt += turn_y
+        
+        #Cam seemed to be turning away, switch this
+        cam_pan  += turn_x
+        cam_tilt += -turn_y
 
         print(cam_pan-90, cam_tilt-90)
 
