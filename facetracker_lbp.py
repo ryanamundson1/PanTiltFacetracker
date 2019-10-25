@@ -17,10 +17,11 @@ FRAME_H = 100
 # Default Pan/Tilt for the camera in degrees.
 # Camera range is from -90 to 90
 cam_pan = 90
-cam_tilt = 60
+cam_tilt = 90
 
 # Set up the CascadeClassifier for face tracking
-cascPath = '/usr/share/opencv/haarcascades/haarcascade_frontalface_default.xml' # sys.argv[1]
+#cascPath = '/usr/share/opencv/haarcascades/haarcascade_frontalface_default.xml' # sys.argv[1]
+cascPath = '/usr/share/opencv/haarcascades/haarcascade_eye.xml' 
 #cascPath = '/usr/share/opencv/lbpcascades/lbpcascade_frontalface.xml'
 faceCascade = cv2.CascadeClassifier(cascPath)
 
@@ -57,7 +58,7 @@ while True:
     gray = cv2.equalizeHist( gray )
 
     # Do face detection
-    faces = faceCascade.detectMultiScale(frame, 1.1, 3, 0, (10, 10))
+    faces = faceCascade.detectMultiScale(frame, 1.1, 3, 0, (5, 5))
    
     # Slower method 
     '''faces = faceCascade.detectMultiScale(
