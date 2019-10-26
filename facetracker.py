@@ -47,7 +47,9 @@ def lights(r,g,b,w):
     show()
 
 #lights(0,0,0,50)
-
+faceFound = False
+faceTime = None
+    
 while True:
     # Capture frame-by-frame
     ret, frame = video_capture.read()
@@ -78,8 +80,7 @@ while True:
 
     face = None
     
-    faceFound = True
-    faceTime = None
+
     
     if faces:
         face = faces[0]
@@ -116,8 +117,8 @@ while True:
         #cam_tilt += turn_y
         
         #Cam seemed to be turning away, switch this
-        current_pan += turn_x
-        current_pan += turn_y
+        current_pan -= turn_x
+        current_pan -= turn_y
 
         #print(cam_pan-90, cam_tilt-90)
 
