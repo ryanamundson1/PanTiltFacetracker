@@ -78,6 +78,9 @@ while True:
 
     face = None
     
+    faceFound = True
+    faceTime = None
+    
     if faces:
         face = faces[0]
         
