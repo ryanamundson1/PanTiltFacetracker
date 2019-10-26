@@ -13,7 +13,7 @@ class ObjCenter:
 
 		# detect all faces in the input frame
 		rects = self.detector.detectMultiScale(gray, scaleFactor=1.05,
-			minNeighbors=9, minSize=(30, 30),
+			minNeighbors=5, minSize=(25, 25),
 			flags=cv2.CASCADE_SCALE_IMAGE)
 
 		# check to see if a face was found
