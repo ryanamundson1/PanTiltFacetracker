@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import cv2, sys, time, os
-frome datetime import datetime, timedelta
+from datetime import datetime, timedelta
 from pantilthat import *
 
 
