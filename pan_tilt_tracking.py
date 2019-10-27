@@ -1,7 +1,10 @@
+##!/usr/bin/env python3
 # USAGE
 # python pan_tilt_tracking.py --cascade haarcascade_frontalface_default.xml
 
 # import necessary packages
+from datetime import datetime, timedelta
+from playsound import playsound
 from multiprocessing import Manager
 from multiprocessing import Process
 from imutils.video import VideoStream
@@ -13,6 +16,7 @@ import signal
 import time
 import sys
 import cv2
+from __builtin__ import False, None
 
 # define the range for the motors
 servoRange = (-90, 90)
@@ -39,6 +43,10 @@ def obj_center(args, objX, objY, centerX, centerY):
 
 	# initialize the object center finder
 	obj = ObjCenter(args["cascade"])
+	
+	#boolean for audio trigger
+	foundFace = False
+	timeSinceAudio = None 
 
 	# loop indefinitely
 	while True:
@@ -60,9 +68,19 @@ def obj_center(args, objX, objY, centerX, centerY):
 		# extract the bounding box and draw it
 		if rect is not None:
 			(x, y, w, h) = rect
-			cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0),
-				2)
-
+			cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
+			
+			
+			timeSinceAudio = datetime.now() if timeSinceAudio is None else timeSinceAudio
+			foundFace = True
+			
+		
+		# Trigger audio on new face every minute
+		if foundFace and timeSinceAudio is not None and timeSinceAudio > (datetime.now() - timedelta(minutes=1)):
+			timeSinceAudio = None
+			playsound('/path/to/a/sound/file/you/want/to/play.mp3', False)
+			
+		
 		# display the frame to the screen
 		cv2.imshow("Pan-Tilt Face Tracking", frame)
 		cv2.waitKey(1)
