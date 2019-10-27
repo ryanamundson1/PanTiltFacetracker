@@ -85,7 +85,7 @@ def obj_center(args, objX, objY, centerX, centerY):
 			foundFace = False
 		
 		# Trigger audio on new face every minute
-		if foundFace and timeSinceAudio is not None and timeSinceAudio > (datetime.now() - timedelta(minutes=1)):
+		if foundFace and timeSinceAudio is not None and timeSinceAudio < (datetime.now() - timedelta(minutes=1)):
 			os.system("mplayer " +random.choice(audio_list) + " &")
 			
 		
