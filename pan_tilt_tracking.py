@@ -4,12 +4,12 @@
 
 # import necessary packages
 from datetime import datetime, timedelta
-from playsound import playsound
 from multiprocessing import Manager
 from multiprocessing import Process
 from imutils.video import VideoStream
 from pyimagesearch.objcenter import ObjCenter
 from pyimagesearch.pid import PID
+import vlc
 import pantilthat as pth
 import argparse
 import signal
@@ -22,7 +22,10 @@ from __builtin__ import False, None
 # define the range for the motors
 servoRange = (-90, 90)
 
-audio_list = ['/path/to/a/sound/file/you/want/to/play.mp3']
+audio_list = ['/home/pi/Downloads/jokes.wav',
+			'/home/pi/Downloads/loveyou.wav',
+			'/home/pi/Downloads/perfect.wav',
+			'/home/pi/Downloads/week.wav']
 
 # function to handle keyboard interrupt
 def signal_handler(sig, frame):
@@ -81,7 +84,8 @@ def obj_center(args, objX, objY, centerX, centerY):
 		# Trigger audio on new face every minute
 		if foundFace and timeSinceAudio is not None and timeSinceAudio > (datetime.now() - timedelta(minutes=1)):
 			timeSinceAudio = None
-			playsound(random.choice(audio_list), False)
+			p = vlc.MediaPlayer(random.choice(audio_list), False)
+			p.play()
 			
 		
 		# display the frame to the screen
