@@ -17,7 +17,6 @@ import time
 import sys
 import cv2
 import random
-from __builtin__ import False, None
 
 # define the range for the motors
 servoRange = (-90, 90)
