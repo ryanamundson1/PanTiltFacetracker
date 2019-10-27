@@ -79,7 +79,8 @@ def obj_center(args, objX, objY, centerX, centerY):
 			
 			timeSinceAudio = datetime.now() if timeSinceAudio is None else timeSinceAudio
 			foundFace = True
-			
+		else:
+			foundFace = False
 		
 		# Trigger audio on new face every minute
 		if foundFace and timeSinceAudio is not None and timeSinceAudio > (datetime.now() - timedelta(minutes=1)):
