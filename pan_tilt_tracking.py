@@ -76,15 +76,16 @@ def obj_center(args, objX, objY, centerX, centerY):
 			(x, y, w, h) = rect
 			cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
 			
-			
-			timeSinceAudio = datetime.now() if timeSinceAudio is None else timeSinceAudio
+			if timeSinceAudio is None:
+				timeSinceAudio = datetime.now()
+			elif timeSinceAudio > (datetime.now() - timedelta(minutes=1)):
+				timeSinceAudio = None
 			foundFace = True
 		else:
 			foundFace = False
 		
 		# Trigger audio on new face every minute
 		if foundFace and timeSinceAudio is not None and timeSinceAudio > (datetime.now() - timedelta(minutes=1)):
-			timeSinceAudio = None
 			os.system("mplayer " +random.choice(audio_list) + " &")
 			
 		
