@@ -83,8 +83,7 @@ def obj_center(args, objX, objY, centerX, centerY):
 		# Trigger audio on new face every minute
 		if foundFace and timeSinceAudio is not None and timeSinceAudio > (datetime.now() - timedelta(minutes=1)):
 			timeSinceAudio = None
-			p = vlc.MediaPlayer(random.choice(audio_list), False)
-			p.play()
+			os.system("mplayer " +random.choice(audio_list) + " &")
 			
 		
 		# display the frame to the screen
