@@ -16,10 +16,13 @@ import signal
 import time
 import sys
 import cv2
+import random
 from __builtin__ import False, None
 
 # define the range for the motors
 servoRange = (-90, 90)
+
+audio_list = ['/path/to/a/sound/file/you/want/to/play.mp3']
 
 # function to handle keyboard interrupt
 def signal_handler(sig, frame):
@@ -78,7 +81,7 @@ def obj_center(args, objX, objY, centerX, centerY):
 		# Trigger audio on new face every minute
 		if foundFace and timeSinceAudio is not None and timeSinceAudio > (datetime.now() - timedelta(minutes=1)):
 			timeSinceAudio = None
-			playsound('/path/to/a/sound/file/you/want/to/play.mp3', False)
+			playsound(random.choice(audio_list), False)
 			
 		
 		# display the frame to the screen
