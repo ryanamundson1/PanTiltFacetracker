@@ -51,7 +51,7 @@ def obj_center(args, objX, objY, centerX, centerY):
 	obj = ObjCenter(args["cascade"])
 	
 	#boolean for audio trigger
-	foundFace = False
+	triggerPlay = False
 	timeSinceAudio = None 
 
 	# loop indefinitely
@@ -77,16 +77,18 @@ def obj_center(args, objX, objY, centerX, centerY):
 			cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
 			
 			if timeSinceAudio is None:
-				timeSinceAudio = datetime.now()
-			elif timeSinceAudio > (datetime.now() - timedelta(minutes=1)):
+				timeSinceAudio = datetime.now() + timedelta(minutes=1)
+				triggerPlay = True
+			elif timeSinceAudio < datetime.now():
 				timeSinceAudio = None
 			foundFace = True
 		else:
 			foundFace = False
 		
 		# Trigger audio on new face every minute
-		if foundFace and timeSinceAudio is not None and timeSinceAudio < (datetime.now() - timedelta(minutes=1)):
+		if foundFace and timeSinceAudio is not None and triggerPlay:
 			os.system("mplayer " +random.choice(audio_list) + " &")
+			triggerPlay = False
 			
 		
 		# display the frame to the screen
